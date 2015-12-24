@@ -20,19 +20,21 @@ var appModel = {
 var geoResultAddress = [];
 
 var ViewModel = function() {
+	var self = this;
 
-	this.stationList = ko.observable(geoResultAddress);
-	this.stationList2 = ko.observableArray([]);
-	geoResultAddress.forEach(function(station){
-		stationList2.push(geoResultAddress[station]);
-	});
+	var Place = function(data){
+    this.name = data.name;
+	};
+    
 
-	this.userLocations = ko.observable(appModel.locationModel);
-	this.currentStation = ko.observable(this.stationList()[0]);
-
-	console.log('this.currentStation: ' + this.currentStation());
-	console.log('this.stationList: ' + this.stationList());
-	console.log('geoResultAddress: ' + geoResultAddress);
-	console.log('this.stationList2: ' + this.stationList2());
+	self.stationList = ko.observableArray([]);
+	geoResultAddress.forEach(function(placeitem){
+      self.stationList.push(new Place(placeitem));
+    });
+	
+	
+	
 };
-ko.applyBindings(new ViewModel());
+window.onload = function(){
+	ko.applyBindings(new ViewModel());
+};
