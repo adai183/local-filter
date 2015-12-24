@@ -36,6 +36,9 @@ html,
     border-color: white;
     background-color: #021f32;
 }
+li {
+    color: white;
+};
 .salesman
 {
     font-family: 'Montserrat';
